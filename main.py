@@ -5,15 +5,28 @@ result = None
 def Calculator():
     global result
 
-    n1 = float(input("Digite um número: "))
+    try:
+        n1 = float(input("Digite um número: "))
+    except ValueError:
+        print('Dados inválidos. Insira apenas números.')
+        return
+
     array_numbers.append(n1)
 
     quest_operator = input(
         "Digite o operador que deseja utilizar -> (+) (-) (*) (/) :\n "
     )
+    if quest_operator not in ('+', '-', '*', '/'):
+        print('Operador inválido. Insira apenas os operadores válidos.')
+        return
     array_numbers.append(quest_operator)
 
-    n2 = float(input("Digite outro número: "))
+    try:
+        n2 = float(input("Digite um número: "))
+    except ValueError:
+        print('Dados inválidos. Insira apenas números.')
+        return
+
     array_numbers.append(n2)
 
     if len(array_numbers) >= 3:
