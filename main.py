@@ -1,7 +1,6 @@
 import math
 
-array_numbers = []
-result = None
+historico = []
 
 
 def get_number():
@@ -42,31 +41,42 @@ def calculate(num1, operator, num2=None):
         return math.sqrt(num1)
 
 
+def format_calculation(num1, operator, num2, result):
+    if operator != 'raiz':
+        return f"{num1} {operator} {num2} = {result}"
+    else:
+        return f"raiz de {num1} = {result}"
+
+
 def Calculator():
-    global result
     num1 = get_number()
 
     if num1 is None:
         return
 
-    array_numbers.append(num1)
     operator = get_operator()
-    array_numbers.append(operator)
 
     if operator != 'raiz':
         num2 = get_number()
         if num2 is None:
             return
-        array_numbers.append(num2)
+        result = calculate(num1, operator, num2)
+        if result is not None:
+            calculation = format_calculation(num1, operator, num2, result)
+            historico.append(calculation)
+            print(f"Resultado: {result}")
     else:
-        array_numbers.append(None)
+        result = calculate(num1, operator)
+        if result is not None:
+            calculation = format_calculation(num1, operator, None, result)
+            historico.append(calculation)
+            print(f"Resultado: {result}")
 
-    num1 = array_numbers[0]
-    operator = array_numbers[1]
 
-    result = calculate(num1, operator, array_numbers[2])
-    if result is not None:
-        print(f"Resultado: {result}")
+def display_history():
+    print("\nHistórico de Cálculos:")
+    for idx, calc in enumerate(historico, 1):
+        print(f"{idx}. {calc}")
 
 
 while True:
@@ -75,3 +85,5 @@ while True:
     yes_no = input("Deseja continuar calculando? (sim/não): ")
     if yes_no.lower() != 'sim':
         break
+
+display_history()
