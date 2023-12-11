@@ -1,6 +1,6 @@
 import math
 
-historico = []
+historical = []
 
 
 def get_number():
@@ -63,19 +63,19 @@ def Calculator():
         result = calculate(num1, operator, num2)
         if result is not None:
             calculation = format_calculation(num1, operator, num2, result)
-            historico.append(calculation)
+            historical.append(calculation)
             print(f"Resultado: {result}")
     else:
         result = calculate(num1, operator)
         if result is not None:
             calculation = format_calculation(num1, operator, None, result)
-            historico.append(calculation)
+            historical.append(calculation)
             print(f"Resultado: {result}")
 
 
 def display_history():
     print("\nHistórico de Cálculos:")
-    for idx, calc in enumerate(historico, 1):
+    for idx, calc in enumerate(historical, 1):
         print(f"{idx}. {calc}")
 
 
