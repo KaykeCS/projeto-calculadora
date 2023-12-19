@@ -60,6 +60,16 @@ class MyApp():
                                     )
         self.visor_label.place(x=2, y=0)
 
+    def calcular(self):
+        global all_values
+        self.result = eval(self.all_values)
+        self.value_text.set(str(self.result))
+
+    def clear_visor(self):
+        global all_values
+        self.all_values = ''
+        self.value_text.set('')
+
     def buttons(self):
         self.button_C = tk.Button(
             self.frm_body,
@@ -69,20 +79,21 @@ class MyApp():
             bg=Colors.color4,
             font=('Ivy', 13, 'bold'),
             relief=RAISED,
-            overrelief=RIDGE,)
+            overrelief=RIDGE,
+            command=self.clear_visor)
         self.button_C.place(x=3, y=0)
 
-        self.button_square_root = tk.Button(
+        self.button_module = tk.Button(
             self.frm_body,
-            text='√',
+            text='%',
             width=5,
             height=2,
             bg=Colors.color4,
             font=('Ivy', 13, 'bold'),
             relief=RAISED,
             overrelief=RIDGE,
-            command=lambda: self.entry_values('√'))
-        self.button_square_root.place(x=118, y=0)
+            command=lambda: self.entry_values('%'))
+        self.button_module.place(x=118, y=0)
 
         self.button_division = tk.Button(
             self.frm_body,
@@ -278,7 +289,8 @@ class MyApp():
             fg=Colors.color2,
             font=('Ivy', 13, 'bold'),
             relief=RAISED,
-            overrelief=RIDGE)
+            overrelief=RIDGE,
+            command=self.calcular)
         self.button_equal.place(x=177, y=208)
 
 
