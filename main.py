@@ -6,7 +6,7 @@ historical = []
 def get_number():
     while True:
         try:
-            num = float(input("Digite um número: "))
+            num = float(input())
             return num
         except ValueError:
             print('Dado inválido. Insira apenas números.')
@@ -14,8 +14,7 @@ def get_number():
 
 def get_operator():
     while True:
-        operator = input(
-            "Digite o operador que deseja utilizar : ")
+        operator = input()
         if operator in ('+', '-', '*', '/', '**', 'raiz'):
             return operator
         else:
@@ -48,7 +47,7 @@ def format_calculation(num1, operator, num2, result):
         return f"raiz de {num1} = {result}"
 
 
-def Calculator():
+def calculator():
     num1 = get_number()
 
     if num1 is None:
@@ -80,7 +79,7 @@ def display_history():
 
 
 while True:
-    Calculator()
+    calculator()
 
     yes_no = input("Deseja continuar calculando? (sim/não): ")
     if yes_no.lower() != 'sim':
